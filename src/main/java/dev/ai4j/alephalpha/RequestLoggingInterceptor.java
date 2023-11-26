@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -19,10 +20,10 @@ import org.slf4j.LoggerFactory;
 @Slf4j
 class RequestLoggingInterceptor implements Interceptor {
 
-  private static final Pattern BEARER_PATTERN = Pattern.compile("(Bearer\\s*sk-)(\\w{2})(\\w+)(\\w{2})");
+  private static final Pattern BEARER_PATTERN = Pattern.compile("(Bearer\\s)(.{2})(.+)(.{2})");
 
   public Response intercept(Chain chain) throws IOException {
-    Request request = chain.request();
+    val request = chain.request();
     log(request);
     return chain.proceed(request);
   }
@@ -49,8 +50,6 @@ class RequestLoggingInterceptor implements Interceptor {
         String headerValue = header.component2();
         if (headerKey.equals("Authorization")) {
           headerValue = maskAuthorizationHeaderValue(headerValue);
-        } else if (headerKey.equals("api-key")) {
-          headerValue = maskApiKeyHeaderValue(headerValue);
         }
 
         return String.format("[%s: %s]", headerKey, headerValue);
@@ -60,8 +59,8 @@ class RequestLoggingInterceptor implements Interceptor {
 
   private static String maskAuthorizationHeaderValue(String authorizationHeaderValue) {
     try {
-      Matcher matcher = BEARER_PATTERN.matcher(authorizationHeaderValue);
-      StringBuffer sb = new StringBuffer();
+      val matcher = BEARER_PATTERN.matcher(authorizationHeaderValue);
+      val sb = new StringBuffer();
 
       while (matcher.find()) {
         matcher.appendReplacement(sb, matcher.group(1) + matcher.group(2) + "..." + matcher.group(4));
@@ -86,7 +85,7 @@ class RequestLoggingInterceptor implements Interceptor {
 
   private static String getBody(Request request) {
     try {
-      Buffer buffer = new Buffer();
+      val buffer = new Buffer();
       request.body().writeTo(buffer);
       return buffer.readUtf8();
     } catch (Exception var2) {

@@ -2,8 +2,12 @@ package dev.ai4j.alephalpha;
 
 import static dev.ai4j.alephalpha.ObjectOperations.getOrDefault;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.GsonBuilder;
 import dev.ai4j.alephalpha.completion.CompletionRequest;
 import dev.ai4j.alephalpha.completion.CompletionResponse;
+import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
+import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
 import java.io.IOException;
 import java.net.Proxy;
 import java.time.Duration;
@@ -16,15 +20,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Slf4j
-public class AlephAlphaClient {
+public class Client {
 
   private final String ALEPH_ALPHA_BASE_URL = "https://api.aleph-alpha.com/";
 
   private final OkHttpClient client;
-  private final AlephAlphaApi api;
+  private final Api api;
 
   @Builder
-  public AlephAlphaClient(
+  public Client(
     @NotNull String apiKey,
     Duration callTimeout,
     Duration connectTimeout,
@@ -57,14 +61,32 @@ public class AlephAlphaClient {
     val retrofit =
       (new Retrofit.Builder()).baseUrl(ALEPH_ALPHA_BASE_URL)
         .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(
+          GsonConverterFactory.create(
+            new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
+          )
+        )
         .build();
-    api = retrofit.create(AlephAlphaApi.class);
+    api = retrofit.create(Api.class);
   }
 
-  CompletionResponse complete(CompletionRequest request) {
+  public CompletionResponse complete(CompletionRequest request) {
     try {
       val response = api.complete(request).execute();
+
+      if (response.isSuccessful()) {
+        return response.body();
+      } else {
+        throw toException(response);
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public EmbeddingsResponse embed(EmbeddingsRequest request) {
+    try {
+      val response = api.embed(request).execute();
 
       if (response.isSuccessful()) {
         return response.body();

@@ -8,11 +8,15 @@ public class CompletionResponse {
 
   private String modelVersion;
   private List<Completion> completions;
+  private List<Object> optimizedPrompt;
 
   @Data
   public static class Completion {
 
+    private String logProbs;
     private String completion;
-    private String finish_reason;
+    private String rawCompletion;
+    private String[] completionTokens;
+    private String finishReason;
   }
 }
