@@ -7,7 +7,7 @@ import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled
+@Disabled("Cannot be executed automatically because the API key")
 class CompletionTest {
 
   private final Client client = Client
@@ -21,7 +21,13 @@ class CompletionTest {
   void simplePromptWorks() {
     val response = client.complete(CompletionRequest.builder().prompt("An apple a day").build());
 
-    assertThat(response.getCompletions().get(0).getCompletion()).contains("keeps the doctor away");
+    assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
+    assertThat(response.getCompletions())
+      .isNotEmpty()
+      .first()
+      .extracting(CompletionResponse.Completion::getCompletion)
+      .asString()
+      .contains("keeps the doctor away");
   }
 
   @Test
@@ -45,6 +51,8 @@ class CompletionTest {
         .rawCompletion(true)
         .build()
     );
+
+    assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull().asList().isNotEmpty();
 
     val completion = response.getCompletions().get(0);
     assertThat(completion.getCompletion()).contains("plants");

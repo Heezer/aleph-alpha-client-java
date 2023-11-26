@@ -8,6 +8,8 @@ import dev.ai4j.alephalpha.completion.CompletionRequest;
 import dev.ai4j.alephalpha.completion.CompletionResponse;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
+import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
+import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
 import java.io.IOException;
 import java.net.Proxy;
 import java.time.Duration;
@@ -16,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -71,22 +75,20 @@ public class Client {
   }
 
   public CompletionResponse complete(CompletionRequest request) {
-    try {
-      val response = api.complete(request).execute();
-
-      if (response.isSuccessful()) {
-        return response.body();
-      } else {
-        throw toException(response);
-      }
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    return executeRequest(api.complete(request));
   }
 
   public EmbeddingsResponse embed(EmbeddingsRequest request) {
+    return executeRequest(api.embed(request));
+  }
+
+  public SemanticEmbeddingsResponse semanticEmbed(SemanticEmbeddingsRequest request) {
+    return executeRequest(api.semanticEmbed(request));
+  }
+
+  private <T> T executeRequest(Call<T> call) {
     try {
-      val response = api.embed(request).execute();
+      Response<T> response = call.execute();
 
       if (response.isSuccessful()) {
         return response.body();
@@ -98,7 +100,7 @@ public class Client {
     }
   }
 
-  private static RuntimeException toException(retrofit2.Response<?> response) throws IOException {
+  private static <T> RuntimeException toException(Response<T> response) throws IOException {
     return new RuntimeException(
       String.format("status code: %s; body: %s", response.code(), response.errorBody().string())
     );

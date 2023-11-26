@@ -10,9 +10,13 @@ import dev.ai4j.alephalpha.Client;
 import java.util.Arrays;
 import java.util.Collections;
 import lombok.val;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Disabled("Cannot be executed automatically because the API key")
 public class EmbeddingsTest {
+
+  private static final String DEFAULT_PROMPT = "An apple a day keeps the doctor away.";
 
   private final Client client = Client
     .builder()
@@ -26,7 +30,7 @@ public class EmbeddingsTest {
     val response = client.embed(
       EmbeddingsRequest
         .builder()
-        .prompt("An apple a day keeps the doctor away.")
+        .prompt(DEFAULT_PROMPT)
         .layers(Collections.singletonList(INPUT_LAYER_MINUS_ONE))
         .pooling(Arrays.asList(POOLING_MAX, POOLING_WEIGHTED_MEAN))
         .build()
@@ -38,5 +42,19 @@ public class EmbeddingsTest {
     assertThat(layer).isNotNull();
     assertThat(layer.get(POOLING_MAX)).isNotNull().hasSize(5120);
     assertThat(layer.get(POOLING_WEIGHTED_MEAN)).isNotNull().hasSize(5120);
+  }
+
+  @Test
+  void simpleSemanticEmbeddingWorks() {
+    val response = client.semanticEmbed(
+      SemanticEmbeddingsRequest.builder().prompt(DEFAULT_PROMPT).compressToSize(128).build()
+    );
+
+    assertThat(response)
+      .isNotNull()
+      .extracting(SemanticEmbeddingsResponse::getEmbedding)
+      .isNotNull()
+      .asList()
+      .hasSize(128);
   }
 }
