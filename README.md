@@ -1,14 +1,14 @@
-# Java client library for Aleph Alpha API
+# Java client library for [Aleph Alpha](https://aleph-alpha.com/)
 
-This is an unofficial Java client library that helps to connect your Java applications with Aleph Alpha API.
+This is an unofficial Java client library that helps to connect your Java applications with [Aleph Alpha API](https://docs.aleph-alpha.com/api/).
 
-## Current capabilities:
+## Current capabilities
 
 - [Completion](https://docs.aleph-alpha.com/api/complete)
 - [Embeddings](https://docs.aleph-alpha.com/api/embed)
 - [Semantic Embeddings](https://docs.aleph-alpha.com/api/semantic-embed)
 
-## Coming soon:
+## Coming soon
 
 - Detailed javadocs
 - The rest of API endpoints
