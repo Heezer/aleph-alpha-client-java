@@ -13,7 +13,7 @@ import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("Cannot be executed automatically because the API key")
+@Disabled("Cannot be executed automatically because of the API key")
 public class EmbeddingsTest {
 
   private static final String DEFAULT_PROMPT = "An apple a day keeps the doctor away.";
