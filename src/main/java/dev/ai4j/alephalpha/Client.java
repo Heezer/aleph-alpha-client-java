@@ -76,19 +76,6 @@ public class Client {
     api = retrofit.create(Api.class);
   }
 
-  public static class ClientBuilder {
-
-    public ClientBuilder logRequests() {
-      logRequests = true;
-      return this;
-    }
-
-    public ClientBuilder logResponses() {
-      logResponses = true;
-      return this;
-    }
-  }
-
   private static <T> RuntimeException toException(Response<T> response) throws IOException {
     return new RuntimeException(
       String.format("status code: %s; body: %s", response.code(), response.errorBody().string())
@@ -103,6 +90,17 @@ public class Client {
         .build()
         .create(Api.class)
         .version()
+    );
+  }
+
+  public String specification() {
+    return executeRequest(
+      (new Retrofit.Builder()).baseUrl(ALEPH_ALPHA_BASE_URL)
+        .client(client)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .build()
+        .create(Api.class)
+        .specification()
     );
   }
 
@@ -129,6 +127,19 @@ public class Client {
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
+    }
+  }
+
+  public static class ClientBuilder {
+
+    public ClientBuilder logRequests() {
+      logRequests = true;
+      return this;
+    }
+
+    public ClientBuilder logResponses() {
+      logResponses = true;
+      return this;
     }
   }
 }

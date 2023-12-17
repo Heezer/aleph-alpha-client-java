@@ -17,6 +17,10 @@ interface Api {
   @Headers("Accept: text/plain")
   Call<String> version();
 
+  @GET("openapi.yaml")
+  @Headers("Accept: text/yaml")
+  Call<String> specification();
+
   @POST("complete")
   @Headers("Accept: application/json")
   Call<CompletionResponse> complete(@Body CompletionRequest request);
