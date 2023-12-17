@@ -8,19 +8,24 @@ import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 interface Api {
+  @GET("version")
+  @Headers("Accept: text/plain")
+  Call<String> version();
+
   @POST("complete")
-  @Headers("Content-Type: application/json")
+  @Headers("Accept: application/json")
   Call<CompletionResponse> complete(@Body CompletionRequest request);
 
   @POST("embed")
-  @Headers("Content-Type: application/json")
+  @Headers("Accept: application/json")
   Call<EmbeddingsResponse> embed(@Body EmbeddingsRequest request);
 
   @POST("semantic_embed")
-  @Headers("Content-Type: application/json")
+  @Headers("Accept: application/json")
   Call<SemanticEmbeddingsResponse> semanticEmbed(@Body SemanticEmbeddingsRequest request);
 }

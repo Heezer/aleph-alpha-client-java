@@ -21,8 +21,8 @@ public class EmbeddingsTest {
   private final Client client = Client
     .builder()
     .apiKey(System.getenv("ALEPH_ALPHA_API_KEY"))
-    .logRequests(true)
-    .logResponses(true)
+    .logRequests()
+    .logResponses()
     .build();
 
   @Test
