@@ -1,10 +1,5 @@
 package dev.ai4j.alephalpha;
 
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -13,8 +8,11 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import okio.Buffer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @NoArgsConstructor
 @Slf4j
@@ -37,8 +35,8 @@ class RequestLoggingInterceptor implements Interceptor {
         inOneLine(request.headers()),
         getBody(request)
       );
-    } catch (Exception var2) {
-      log.warn("Failed to log request", var2);
+    } catch (Exception ex) {
+      log.warn("Failed to log request", ex);
     }
   }
 
@@ -84,12 +82,16 @@ class RequestLoggingInterceptor implements Interceptor {
   }
 
   private static String getBody(Request request) {
+    if (request.body() == null) {
+      return "<empty>";
+    }
+
     try {
-      val buffer = new Buffer();
+      Buffer buffer = new Buffer();
       request.body().writeTo(buffer);
       return buffer.readUtf8();
-    } catch (Exception var2) {
-      log.warn("Exception happened while reading request body", var2);
+    } catch (Exception ex) {
+      log.warn("Exception happened while reading request body", ex);
       return "[Exception happened while reading request body. Check logs for more details.]";
     }
   }

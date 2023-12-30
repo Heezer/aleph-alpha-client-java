@@ -23,6 +23,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import java.io.IOException;
 import java.net.Proxy;
 import java.time.Duration;
+import java.util.List;
 
 @Slf4j
 public class Client {
@@ -31,6 +32,7 @@ public class Client {
 
   private final OkHttpClient client;
   private final Api api;
+  private final Api textApi;
 
   @Builder
   public Client(
@@ -63,16 +65,21 @@ public class Client {
     }
 
     client = builder.build();
-    val retrofit =
+
+    val retrofitBuilder =
       (new Retrofit.Builder()).baseUrl(ALEPH_ALPHA_BASE_URL)
         .client(client)
-        .addConverterFactory(
-          GsonConverterFactory.create(
-            new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
-          )
+        .addConverterFactory(ScalarsConverterFactory.create());
+
+    val retrofit = retrofitBuilder
+      .addConverterFactory(
+        GsonConverterFactory.create(
+          new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
         )
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .build();
+      )
+      .build();
+
+    textApi = retrofitBuilder.build().create(Api.class);
     api = retrofit.create(Api.class);
   }
 
@@ -83,25 +90,19 @@ public class Client {
   }
 
   public String version() {
-    return executeRequest(
-      (new Retrofit.Builder()).baseUrl(ALEPH_ALPHA_BASE_URL)
-        .client(client)
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .build()
-        .create(Api.class)
-        .version()
-    );
+    return executeRequest(textApi.version());
   }
 
   public String specification() {
-    return executeRequest(
-      (new Retrofit.Builder()).baseUrl(ALEPH_ALPHA_BASE_URL)
-        .client(client)
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .build()
-        .create(Api.class)
-        .specification()
-    );
+    return executeRequest(textApi.specification());
+  }
+
+  public List<String> openApiVersions() {
+    return executeRequest(textApi.openApiVersions());
+  }
+
+  public String openApiDescription(String version) {
+    return executeRequest(textApi.openApiDescription(version));
   }
 
   public CompletionResponse complete(CompletionRequest request) {

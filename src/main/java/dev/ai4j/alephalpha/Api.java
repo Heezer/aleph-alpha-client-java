@@ -11,6 +11,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+
+import java.util.List;
 
 interface Api {
   @GET("version")
@@ -20,6 +23,14 @@ interface Api {
   @GET("openapi.yaml")
   @Headers("Accept: text/yaml")
   Call<String> specification();
+
+  @GET("openapi-description")
+  @Headers("Accept: text/yaml")
+  Call<List<String>> openApiVersions();
+
+  @GET("openapi-description/{version}")
+  @Headers("Accept: text/yaml")
+  Call<String> openApiDescription(@Path("version") String version);
 
   @POST("complete")
   @Headers("Accept: application/json")
