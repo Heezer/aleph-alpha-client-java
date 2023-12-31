@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import static dev.ai4j.alephalpha.ObjectOperations.getOrDefault;
 import dev.ai4j.alephalpha.completion.CompletionRequest;
 import dev.ai4j.alephalpha.completion.CompletionResponse;
+import dev.ai4j.alephalpha.embeddings.BatchedSemanticEmbeddingsRequest;
+import dev.ai4j.alephalpha.embeddings.BatchedSemanticEmbeddingsResponse;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
@@ -23,6 +25,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import retrofit2.http.Query;
 
 import java.io.IOException;
 import java.net.Proxy;
@@ -129,16 +132,36 @@ public class Client {
     return executeRequest(api.tokenizerForModel(model));
   }
 
+  public CompletionResponse complete(Boolean nice, CompletionRequest request) {
+    return executeRequest(api.complete(nice, request));
+  }
+
   public CompletionResponse complete(CompletionRequest request) {
-    return executeRequest(api.complete(request));
+    return complete(null, request);
+  }
+
+  public EmbeddingsResponse embed(Boolean nice, EmbeddingsRequest request) {
+    return executeRequest(api.embed(nice, request));
   }
 
   public EmbeddingsResponse embed(EmbeddingsRequest request) {
-    return executeRequest(api.embed(request));
+    return embed(null, request);
+  }
+
+  public SemanticEmbeddingsResponse semanticEmbed(Boolean nice, SemanticEmbeddingsRequest request) {
+    return executeRequest(api.semanticEmbed(nice, request));
   }
 
   public SemanticEmbeddingsResponse semanticEmbed(SemanticEmbeddingsRequest request) {
-    return executeRequest(api.semanticEmbed(request));
+    return semanticEmbed(null, request);
+  }
+
+  public BatchedSemanticEmbeddingsResponse batchSemanticEmbed(Boolean nice, BatchedSemanticEmbeddingsRequest request) {
+    return executeRequest(api.batchSemanticEmbed(nice, request));
+  }
+
+  public BatchedSemanticEmbeddingsResponse batchSemanticEmbed(BatchedSemanticEmbeddingsRequest request) {
+    return batchSemanticEmbed(null, request);
   }
 
   private <T> T executeRequest(Call<T> call) {

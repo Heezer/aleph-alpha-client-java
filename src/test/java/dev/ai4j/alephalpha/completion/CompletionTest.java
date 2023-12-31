@@ -1,9 +1,10 @@
 package dev.ai4j.alephalpha.completion;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import dev.ai4j.alephalpha.Client;
+import static dev.ai4j.alephalpha.Models.SUPREME_CONTROL_MODEL;
+import static java.lang.Boolean.TRUE;
 import lombok.val;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ class CompletionTest {
 
   @Test
   void simplePromptWorks() {
-    val response = client.complete(CompletionRequest.builder().prompt("An apple a day").build());
+    val response = client.complete(TRUE, CompletionRequest.builder().prompt("An apple a day").build());
 
     assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
     assertThat(response.getCompletions())
@@ -35,7 +36,7 @@ class CompletionTest {
     val response = client.complete(
       CompletionRequest
         .builder()
-        .model("luminous-supreme-control")
+        .model(SUPREME_CONTROL_MODEL)
         .prompt(
           "### Instruction:\n" +
           "Identify the topic of the text.\n" +

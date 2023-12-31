@@ -6,25 +6,17 @@ import static dev.ai4j.alephalpha.embeddings.EmbeddingsRepresentations.REPRESENT
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
-public class SemanticEmbeddingsRequest {
-
-  @Builder.Default
-  private String model = BASE_MODEL;
-
-  private String hosting;
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
+public class SemanticEmbeddingsRequest extends SemanticEmbeddingsBaseRequest {
 
   @NonNull
   private String prompt;
-
-  @Builder.Default
-  private String representation = REPRESENTATION_SYMMETRIC;
-
-  private Integer compressToSize;
-  private Boolean normalize;
-  private Double contextualControlThreshold;
-  private Boolean controlLogAdditive;
 }
