@@ -9,6 +9,9 @@ import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
+import dev.ai4j.alephalpha.tokens.ApiToken;
+import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
+import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -103,6 +106,18 @@ public class Client {
 
   public String openApiDescription(String version) {
     return executeRequest(textApi.openApiDescription(version));
+  }
+
+  public List<ApiToken> apiTokens() {
+    return executeRequest(api.apiTokens());
+  }
+
+  public NewApiTokenResponse createApiToken(NewApiTokenRequest request) {
+    return executeRequest(api.createApiToken(request));
+  }
+
+  public void deleteApiToken(Integer tokenId) {
+    executeRequest(api.deleteApiToken(tokenId));
   }
 
   public CompletionResponse complete(CompletionRequest request) {
