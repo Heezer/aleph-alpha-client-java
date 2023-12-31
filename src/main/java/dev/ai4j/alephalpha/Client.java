@@ -9,6 +9,7 @@ import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
+import dev.ai4j.alephalpha.models.Model;
 import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
@@ -118,6 +119,14 @@ public class Client {
 
   public void deleteApiToken(Integer tokenId) {
     executeRequest(api.deleteApiToken(tokenId));
+  }
+
+  public List<Model> models() {
+    return executeRequest(api.models());
+  }
+
+  public Object tokenizerForModel(String model) {
+    return executeRequest(api.tokenizerForModel(model));
   }
 
   public CompletionResponse complete(CompletionRequest request) {

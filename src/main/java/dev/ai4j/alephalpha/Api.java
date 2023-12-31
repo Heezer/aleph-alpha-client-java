@@ -6,6 +6,7 @@ import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
+import dev.ai4j.alephalpha.models.Model;
 import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
@@ -47,6 +48,14 @@ interface Api {
   @DELETE("users/me/tokens/{tokenId}")
   @Headers("Accept: application/json")
   Call<Void> deleteApiToken(@Path("tokenId") Integer tokenId);
+
+  @GET("models_available")
+  @Headers("Accept: application/json")
+  Call<List<Model>> models();
+
+  @GET("models/{model}/tokenizer")
+  @Headers("Accept: application/json")
+  Call<Object> tokenizerForModel(@Path("model") String model);
 
   @POST("complete")
   @Headers("Accept: application/json")
