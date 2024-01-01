@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import dev.ai4j.alephalpha.Client;
 import dev.ai4j.alephalpha.prompt.MultimodalImage;
 import dev.ai4j.alephalpha.prompt.MultimodalText;
+import dev.ai4j.alephalpha.prompt.MultimodalTokenIds;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
@@ -141,5 +142,22 @@ class CompletionTest {
       .extracting(CompletionResponse.Completion::getCompletion)
       .asString()
       .contains("black and white silhouette of a bird");
+  }
+
+  @Test
+  void multimodalTokenIdsPromptWorks() {
+    val response = client.complete(
+      CompletionRequest
+        .builder()
+        .prompt(Collections.singletonList(MultimodalTokenIds.builder().data(Collections.singletonList(1)).build()))
+        .build()
+    );
+
+    assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
+    assertThat(response.getCompletions())
+      .isNotEmpty()
+      .first()
+      .extracting(CompletionResponse.Completion::getCompletion)
+      .isNotNull();
   }
 }
