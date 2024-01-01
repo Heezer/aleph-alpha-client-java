@@ -10,6 +10,8 @@ import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
 import dev.ai4j.alephalpha.evaluate.EvaluateRequest;
 import dev.ai4j.alephalpha.evaluate.EvaluateResponse;
+import dev.ai4j.alephalpha.explanation.ExplanationRequest;
+import dev.ai4j.alephalpha.explanation.ExplanationResponse;
 import dev.ai4j.alephalpha.models.Model;
 import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
@@ -83,4 +85,8 @@ interface Api {
   @POST("evaluate")
   @Headers("Accept: application/json")
   Call<EvaluateResponse> evaluate(@Query("nice") Boolean nice, @Body EvaluateRequest request);
+
+  @POST("explain")
+  @Headers("Accept: application/json")
+  Call<ExplanationResponse> explain(@Query("nice") Boolean nice, @Body ExplanationRequest request);
 }
