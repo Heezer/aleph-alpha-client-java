@@ -1,17 +1,19 @@
 package dev.ai4j.alephalpha.embeddings;
 
-import dev.ai4j.alephalpha.Client;
 import static dev.ai4j.alephalpha.embeddings.EmbeddingsLayers.INPUT_LAYER_MINUS_ONE;
 import static dev.ai4j.alephalpha.embeddings.EmbeddingsLayers.OUTPUT_LAYER_MINUS_ONE;
+import static dev.ai4j.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING_LAST_TOKEN;
 import static dev.ai4j.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING_MAX;
 import static dev.ai4j.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING_WEIGHTED_MEAN;
-import lombok.val;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
+import dev.ai4j.alephalpha.Client;
+import dev.ai4j.alephalpha.prompt.MultimodalText;
 import java.util.Arrays;
 import java.util.Collections;
+import lombok.val;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 @Disabled("Cannot be executed automatically because of the API key")
 public class EmbeddingsTest {
@@ -28,7 +30,6 @@ public class EmbeddingsTest {
   @Test
   void embeddingWithTwoPoolingsWorks() {
     val response = client.embed(
-      null,
       EmbeddingsRequest
         .builder()
         .prompt(DEFAULT_PROMPT)
@@ -60,7 +61,39 @@ public class EmbeddingsTest {
   }
 
   @Test
-  void batchedSemanticEmbeddingWorks() {
+  void embeddingWithMultimodalTextPromptWorks() {
+    val response = client.embed(
+      EmbeddingsRequest
+        .builder()
+        .prompt(Collections.singletonList(MultimodalText.builder().data(DEFAULT_PROMPT).build()))
+        .layers(Collections.singletonList(INPUT_LAYER_MINUS_ONE))
+        .pooling(Collections.singletonList(POOLING_LAST_TOKEN))
+        .build()
+    );
+
+    assertThat(response).isNotNull().extracting(EmbeddingsResponse::getEmbeddings).isNotNull();
+  }
+
+  @Test
+  void semanticEmbeddingWithMultimodalTextPromptWorks() {
+    val response = client.semanticEmbed(
+      SemanticEmbeddingsRequest
+        .builder()
+        .prompt(Collections.singletonList(MultimodalText.builder().data(DEFAULT_PROMPT).build()))
+        .compressToSize(128)
+        .build()
+    );
+
+    assertThat(response)
+      .isNotNull()
+      .extracting(SemanticEmbeddingsResponse::getEmbedding)
+      .isNotNull()
+      .asList()
+      .hasSize(128);
+  }
+
+  @Test
+  void batchedSemanticEmbeddingWithTextPromptWorks() {
     val response = client.batchSemanticEmbed(
       BatchedSemanticEmbeddingsRequest
         .builder()
@@ -79,5 +112,21 @@ public class EmbeddingsTest {
       .first()
       .asList()
       .hasSize(128);
+  }
+
+  @Test
+  void batchedSemanticEmbeddingWithMultimodalTextWorks() {
+    val response = client.batchSemanticEmbed(
+      BatchedSemanticEmbeddingsRequest
+        .builder()
+        .prompts(
+          Collections.singletonList(Collections.singletonList(MultimodalText.builder().data(DEFAULT_PROMPT).build()))
+        )
+        .compressToSize(128)
+        .normalize(true)
+        .build()
+    );
+
+    assertThat(response).isNotNull().extracting(BatchedSemanticEmbeddingsResponse::getEmbeddings).isNotNull();
   }
 }

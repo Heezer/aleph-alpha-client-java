@@ -1,10 +1,13 @@
 package dev.ai4j.alephalpha.completion;
 
-import dev.ai4j.alephalpha.Client;
 import static dev.ai4j.alephalpha.Models.SUPREME_CONTROL_MODEL;
 import static java.lang.Boolean.TRUE;
-import lombok.val;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import dev.ai4j.alephalpha.Client;
+import dev.ai4j.alephalpha.prompt.MultimodalText;
+import java.util.Collections;
+import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +23,19 @@ class CompletionTest {
 
   @Test
   void simplePromptWorks() {
+    val response = client.complete(CompletionRequest.builder().prompt("An apple a day").build());
+
+    assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
+    assertThat(response.getCompletions())
+      .isNotEmpty()
+      .first()
+      .extracting(CompletionResponse.Completion::getCompletion)
+      .asString()
+      .contains("keeps the doctor away");
+  }
+
+  @Test
+  void simplePromptWithNiceFlagWorks() {
     val response = client.complete(TRUE, CompletionRequest.builder().prompt("An apple a day").build());
 
     assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
@@ -58,5 +74,35 @@ class CompletionTest {
     val completion = response.getCompletions().get(0);
     assertThat(completion.getCompletion()).contains("plants");
     assertThat(completion.getRawCompletion()).contains("plants");
+  }
+
+  @Test
+  void multimodalTextPromptWorks() {
+    val response = client.complete(
+      CompletionRequest
+        .builder()
+        .prompt(
+          Collections.singletonList(
+            MultimodalText
+              .builder()
+              .data("an apple")
+              .controls(
+                Collections.singletonList(
+                  MultimodalText.Control.builder().start(3).length(5).factor(0.1f).tokenOverlap("complete").build()
+                )
+              )
+              .build()
+          )
+        )
+        .build()
+    );
+
+    assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
+    assertThat(response.getCompletions())
+      .isNotEmpty()
+      .first()
+      .extracting(CompletionResponse.Completion::getCompletion)
+      .asString()
+      .contains("a pear");
   }
 }

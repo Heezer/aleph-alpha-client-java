@@ -17,7 +17,7 @@ public class CompletionRequest {
   private String hosting;
 
   @NonNull
-  private String prompt;
+  private Object prompt;
 
   @Builder.Default
   private Integer maximumTokens = 32;

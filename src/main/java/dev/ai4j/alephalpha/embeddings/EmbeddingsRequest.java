@@ -17,7 +17,7 @@ public class EmbeddingsRequest {
   private String hosting;
 
   @NonNull
-  private String prompt;
+  private Object prompt;
 
   @NonNull
   private List<Integer> layers;

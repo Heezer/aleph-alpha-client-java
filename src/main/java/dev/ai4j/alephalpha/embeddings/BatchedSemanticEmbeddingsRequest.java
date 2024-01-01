@@ -1,12 +1,11 @@
 package dev.ai4j.alephalpha.embeddings;
 
+import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-
-import java.util.List;
 
 @Data
 @ToString(callSuper = true)
@@ -15,5 +14,5 @@ import java.util.List;
 public class BatchedSemanticEmbeddingsRequest extends SemanticEmbeddingsBaseRequest {
 
   @NonNull
-  private List<String> prompts;
+  private List<Object> prompts;
 }
