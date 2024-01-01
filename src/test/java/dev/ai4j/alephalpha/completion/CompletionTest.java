@@ -5,8 +5,14 @@ import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.ai4j.alephalpha.Client;
+import dev.ai4j.alephalpha.prompt.MultimodalImage;
 import dev.ai4j.alephalpha.prompt.MultimodalText;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Collections;
+import java.util.Objects;
+import lombok.SneakyThrows;
 import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -104,5 +110,36 @@ class CompletionTest {
       .extracting(CompletionResponse.Completion::getCompletion)
       .asString()
       .contains("a pear");
+  }
+
+  @Test
+  @SneakyThrows
+  void multimodalImagePromptWorks() {
+    val base64Image = Base64
+      .getEncoder()
+      .encodeToString(
+        Files.readAllBytes(
+          Paths.get(
+            Objects
+              .requireNonNull(Thread.currentThread().getContextClassLoader().getResource("images/bird.png"))
+              .toURI()
+          )
+        )
+      );
+
+    val response = client.complete(
+      CompletionRequest
+        .builder()
+        .prompt(Collections.singletonList(MultimodalImage.builder().data(base64Image).build()))
+        .build()
+    );
+
+    assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
+    assertThat(response.getCompletions())
+      .isNotEmpty()
+      .first()
+      .extracting(CompletionResponse.Completion::getCompletion)
+      .asString()
+      .contains("black and white silhouette of a bird");
   }
 }
