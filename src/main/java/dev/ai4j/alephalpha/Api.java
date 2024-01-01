@@ -2,16 +2,19 @@ package dev.ai4j.alephalpha;
 
 import dev.ai4j.alephalpha.completion.CompletionRequest;
 import dev.ai4j.alephalpha.completion.CompletionResponse;
+import dev.ai4j.alephalpha.embeddings.BatchedSemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.BatchedSemanticEmbeddingsResponse;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
-import dev.ai4j.alephalpha.embeddings.BatchedSemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
+import dev.ai4j.alephalpha.evaluate.EvaluateRequest;
+import dev.ai4j.alephalpha.evaluate.EvaluateResponse;
 import dev.ai4j.alephalpha.models.Model;
 import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -20,8 +23,6 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-
-import java.util.List;
 
 interface Api {
   @GET("version")
@@ -74,5 +75,12 @@ interface Api {
 
   @POST("batch_semantic_embed")
   @Headers("Accept: application/json")
-  Call<BatchedSemanticEmbeddingsResponse> batchSemanticEmbed(@Query("nice") Boolean nice, @Body BatchedSemanticEmbeddingsRequest request);
+  Call<BatchedSemanticEmbeddingsResponse> batchSemanticEmbed(
+    @Query("nice") Boolean nice,
+    @Body BatchedSemanticEmbeddingsRequest request
+  );
+
+  @POST("evaluate")
+  @Headers("Accept: application/json")
+  Call<EvaluateResponse> evaluate(@Query("nice") Boolean nice, @Body EvaluateRequest request);
 }

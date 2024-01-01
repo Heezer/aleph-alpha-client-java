@@ -9,6 +9,8 @@ public class CompletionResponse {
   private String modelVersion;
   private List<Completion> completions;
   private List<Object> optimizedPrompt;
+  private Integer numTokensPromptTotal;
+  private Integer numTokensGenerated;
 
   @Data
   public static class Completion {

@@ -48,5 +48,5 @@ public class CompletionRequest {
   private List<String> completionBiasInclusion;
   private Boolean completionBiasExclusionFirstTokenOnly;
   private Integer contextualControlThreshold;
-  private Integer controlLogAdditive;
+  private Boolean controlLogAdditive;
 }

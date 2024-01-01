@@ -1,8 +1,9 @@
 package dev.ai4j.alephalpha;
 
+import static dev.ai4j.alephalpha.ObjectOperations.getOrDefault;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
-import static dev.ai4j.alephalpha.ObjectOperations.getOrDefault;
 import dev.ai4j.alephalpha.completion.CompletionRequest;
 import dev.ai4j.alephalpha.completion.CompletionResponse;
 import dev.ai4j.alephalpha.embeddings.BatchedSemanticEmbeddingsRequest;
@@ -11,10 +12,16 @@ import dev.ai4j.alephalpha.embeddings.EmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.EmbeddingsResponse;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsRequest;
 import dev.ai4j.alephalpha.embeddings.SemanticEmbeddingsResponse;
+import dev.ai4j.alephalpha.evaluate.EvaluateRequest;
+import dev.ai4j.alephalpha.evaluate.EvaluateResponse;
 import dev.ai4j.alephalpha.models.Model;
 import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
+import java.io.IOException;
+import java.net.Proxy;
+import java.time.Duration;
+import java.util.List;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -25,12 +32,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-import retrofit2.http.Query;
-
-import java.io.IOException;
-import java.net.Proxy;
-import java.time.Duration;
-import java.util.List;
 
 @Slf4j
 public class Client {
@@ -162,6 +163,14 @@ public class Client {
 
   public BatchedSemanticEmbeddingsResponse batchSemanticEmbed(BatchedSemanticEmbeddingsRequest request) {
     return batchSemanticEmbed(null, request);
+  }
+
+  public EvaluateResponse evaluate(Boolean nice, EvaluateRequest request) {
+    return executeRequest(api.evaluate(nice, request));
+  }
+
+  public EvaluateResponse evaluate(EvaluateRequest request) {
+    return evaluate(null, request);
   }
 
   private <T> T executeRequest(Call<T> call) {
