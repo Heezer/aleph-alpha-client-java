@@ -7,7 +7,7 @@ import static dev.ai4j.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING
 import static dev.ai4j.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING_WEIGHTED_MEAN;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.ai4j.alephalpha.Client;
+import dev.ai4j.alephalpha.BaseTest;
 import dev.ai4j.alephalpha.prompt.MultimodalText;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,16 +16,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 @Disabled("Cannot be executed automatically because of the API key")
-public class EmbeddingsTest {
-
-  private static final String DEFAULT_PROMPT = "An apple a day keeps the doctor away.";
-
-  private final Client client = Client
-    .builder()
-    .apiKey(System.getenv("ALEPH_ALPHA_API_KEY"))
-    .logRequests()
-    .logResponses()
-    .build();
+public class EmbeddingsTest extends BaseTest {
 
   @Test
   void embeddingWithTwoPoolingsWorks() {

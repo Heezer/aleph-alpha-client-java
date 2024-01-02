@@ -4,7 +4,7 @@ import static dev.ai4j.alephalpha.Models.SUPREME_CONTROL_MODEL;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.ai4j.alephalpha.Client;
+import dev.ai4j.alephalpha.BaseTest;
 import dev.ai4j.alephalpha.prompt.MultimodalImage;
 import dev.ai4j.alephalpha.prompt.MultimodalText;
 import dev.ai4j.alephalpha.prompt.MultimodalTokenIds;
@@ -19,14 +19,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 @Disabled("Cannot be executed automatically because of the API key")
-class CompletionTest {
-
-  private final Client client = Client
-    .builder()
-    .apiKey(System.getenv("ALEPH_ALPHA_API_KEY"))
-    .logRequests()
-    .logResponses()
-    .build();
+class CompletionTest extends BaseTest {
 
   @Test
   void simplePromptWorks() {

@@ -2,25 +2,18 @@ package dev.ai4j.alephalpha.tokenize;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.ai4j.alephalpha.Client;
+import dev.ai4j.alephalpha.BaseTest;
 import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 @Disabled("Cannot be executed automatically because of the API key")
-class TokenizationTest {
-
-  private final Client client = Client
-    .builder()
-    .apiKey(System.getenv("ALEPH_ALPHA_API_KEY"))
-    .logRequests()
-    .logResponses()
-    .build();
+class TokenizationTest extends BaseTest {
 
   @Test
   void simpleTokenizationWorks() {
     val response = client.tokenize(
-      TokenizationRequest.builder().prompt("An apple a day keeps the doctor away").tokens(true).tokenIds(false).build()
+      TokenizationRequest.builder().prompt(DEFAULT_PROMPT).tokens(true).tokenIds(false).build()
     );
 
     assertThat(response)
@@ -28,7 +21,19 @@ class TokenizationTest {
       .extracting(TokenizationResponse::getTokens)
       .isNotNull()
       .asList()
-      .hasSize(8)
+      .hasSize(9)
       .contains("Ġapple");
+    assertThat(response).extracting(TokenizationResponse::getTokenIds).isNull();
+  }
+
+  @Test
+  void simpleDetokenizationWorks() {
+    val tokens = client
+      .tokenize(TokenizationRequest.builder().prompt(DEFAULT_PROMPT).tokens(false).tokenIds(true).build())
+      .getTokenIds();
+
+    val response = client.detokenize(DetokenizationRequest.builder().tokenIds(tokens).build());
+
+    assertThat(response).isNotNull().extracting(DetokenizationResponse::getResult).asString().endsWith(DEFAULT_PROMPT);
   }
 }

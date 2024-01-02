@@ -1,28 +1,22 @@
 package dev.ai4j.alephalpha.tokens;
 
-import dev.ai4j.alephalpha.Client;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import dev.ai4j.alephalpha.BaseTest;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 @Disabled("Cannot be executed automatically because of the API key")
 @Slf4j
-class TokensTest {
-
-  private final Client client = Client
-    .builder()
-    .apiKey(System.getenv("ALEPH_ALPHA_API_KEY"))
-    .logRequests()
-    .logResponses()
-    .build();
+class TokensTest extends BaseTest {
 
   @Test
   void receivingIssuedApiTokensWorks() {
     val response = client.apiTokens();
 
-    log.info("Your issued Aleph Alpha API tokens: {}", response);
+    log.info("Your issued API tokens: {}", response);
     assertThat(response).isNotNull().isNotEmpty();
   }
 
@@ -30,7 +24,7 @@ class TokensTest {
   void creatingAndDeletingApiTokenWorks() {
     val response = client.createApiToken(NewApiTokenRequest.builder().description("tokenFromTest").build());
 
-    log.info("Your issued Aleph Alpha API tokens: {}", response);
+    log.info("Your issued API tokens: {}", response);
     assertThat(response)
       .isNotNull()
       .extracting(NewApiTokenResponse::getMetadata)

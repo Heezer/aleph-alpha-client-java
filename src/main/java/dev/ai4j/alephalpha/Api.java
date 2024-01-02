@@ -13,6 +13,8 @@ import dev.ai4j.alephalpha.evaluate.EvaluateResponse;
 import dev.ai4j.alephalpha.explanation.ExplanationRequest;
 import dev.ai4j.alephalpha.explanation.ExplanationResponse;
 import dev.ai4j.alephalpha.models.Model;
+import dev.ai4j.alephalpha.tokenize.DetokenizationRequest;
+import dev.ai4j.alephalpha.tokenize.DetokenizationResponse;
 import dev.ai4j.alephalpha.tokenize.TokenizationRequest;
 import dev.ai4j.alephalpha.tokenize.TokenizationResponse;
 import dev.ai4j.alephalpha.tokens.ApiToken;
@@ -94,5 +96,9 @@ interface Api {
 
   @POST("tokenize")
   @Headers("Accept: application/json")
-  Call<TokenizationResponse> tokenize(@Query("nice") Boolean nice, @Body TokenizationRequest request);
+  Call<TokenizationResponse> tokenize(@Body TokenizationRequest request);
+
+  @POST("detokenize")
+  @Headers("Accept: application/json")
+  Call<DetokenizationResponse> detokenize(@Body DetokenizationRequest request);
 }

@@ -17,6 +17,8 @@ import dev.ai4j.alephalpha.evaluate.EvaluateResponse;
 import dev.ai4j.alephalpha.explanation.ExplanationRequest;
 import dev.ai4j.alephalpha.explanation.ExplanationResponse;
 import dev.ai4j.alephalpha.models.Model;
+import dev.ai4j.alephalpha.tokenize.DetokenizationRequest;
+import dev.ai4j.alephalpha.tokenize.DetokenizationResponse;
 import dev.ai4j.alephalpha.tokenize.TokenizationRequest;
 import dev.ai4j.alephalpha.tokenize.TokenizationResponse;
 import dev.ai4j.alephalpha.tokens.ApiToken;
@@ -185,12 +187,12 @@ public class Client {
     return explain(null, request);
   }
 
-  public TokenizationResponse tokenize(Boolean nice, TokenizationRequest request) {
-    return executeRequest(api.tokenize(nice, request));
+  public TokenizationResponse tokenize(TokenizationRequest request) {
+    return executeRequest(api.tokenize(request));
   }
 
-  public TokenizationResponse tokenize(TokenizationRequest request) {
-    return tokenize(null, request);
+  public DetokenizationResponse detokenize(DetokenizationRequest request) {
+    return executeRequest(api.detokenize(request));
   }
 
   private <T> T executeRequest(Call<T> call) {
