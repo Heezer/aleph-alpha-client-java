@@ -16,9 +16,9 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-    - name: Publish package
+    - name: Publish package -DskipTests
       run: mvn -B deploy
       env:
         ALEPH_ALPHA_API_KEY: ${{ secrets.ALEPH_ALPHA_API_KEY }}
-        MAVEN_USERNAME: default
+        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
