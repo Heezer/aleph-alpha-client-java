@@ -1,18 +1,13 @@
 # Java client library for [Aleph Alpha](https://aleph-alpha.com/)
 
-This is an unofficial Java client library that helps to connect your Java applications with [Aleph Alpha API](https://docs.aleph-alpha.com/api/).
+This is an unofficial Java client library that helps to connect your Java applications to [Aleph Alpha API](https://docs.aleph-alpha.com/api/).
 
 ## Current capabilities
 
-- [Completion](https://docs.aleph-alpha.com/api/complete)
-- [Embeddings](https://docs.aleph-alpha.com/api/embed)
-- [Semantic Embeddings](https://docs.aleph-alpha.com/api/semantic-embed)
+We support the current [API version 1.14.0](https://docs.aleph-alpha.com/api/) completely.
 
-## Coming soon
+Tell us about any issue you face or new feature [here](https://github.com/Heezer/aleph-alpha-client-java/issues/new).
 
-- Detailed javadocs
-- The rest of API endpoints
-- [Tell us what you need](https://github.com/Heezer/aleph-alpha-client-java/issues/new)
 
 # Code examples
 
@@ -73,6 +68,21 @@ CompletionResponse response = client.complete(
 );
 ```
 
+## Image Completions
+
+```
+String base64Image = <your image as Base64>;
+
+CompletionResponse response = client.complete(
+  CompletionRequest
+    .builder()
+    .prompt(Collections.singletonList(MultimodalImage.builder().data(base64Image).build()))
+    .build()
+);
+
+response.getCompletions().get(0).getCompletion(); // image completion/description is here
+```
+
 ## Embeddings
 
 ```
@@ -94,3 +104,32 @@ SemanticEmbeddingsResponse response = client.semanticEmbed(
 );
 ```
 
+## Tokenization & Detokenization
+
+```
+List<Integer> tokens = client
+  .tokenize(
+    TokenizationRequest
+      .builder()
+      .prompt("An apple a day keeps the doctor away.")
+      .tokens(false)
+      .tokenIds(true)
+      .build()
+  )
+  .getTokenIds();
+
+DetokenizationResponse response = client.detokenize(DetokenizationRequest.builder().tokenIds(tokens).build());
+
+response.getResult(); // An apple a day keeps the doctor away.
+```
+
+## Retrieving Available Models
+
+```
+List<Model> response = client.models();
+```
+
+
+# Useful Links
+* [Aleph Alpha Latest HTTP API](https://docs.aleph-alpha.com/api/)
+* [Aleph Alpha: Die deutsche Antwort auf ChatGPT (in German)](https://www.youtube.com/watch?v=ATrWzENRAu8)
