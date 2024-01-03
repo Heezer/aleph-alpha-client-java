@@ -20,12 +20,15 @@ import dev.ai4j.alephalpha.tokenize.TokenizationResponse;
 import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
+import dev.ai4j.alephalpha.users.ChangeUserSettingsRequest;
+import dev.ai4j.alephalpha.users.UserSettingsResponse;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -101,4 +104,12 @@ interface Api {
   @POST("detokenize")
   @Headers("Accept: application/json")
   Call<DetokenizationResponse> detokenize(@Body DetokenizationRequest request);
+
+  @GET("users/me")
+  @Headers("Accept: application/json")
+  Call<UserSettingsResponse> userSettings();
+
+  @PATCH("users/me")
+  @Headers("Accept: application/json")
+  Call<UserSettingsResponse> changeUserSettings(@Body ChangeUserSettingsRequest request);
 }

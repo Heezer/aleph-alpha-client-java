@@ -24,6 +24,8 @@ import dev.ai4j.alephalpha.tokenize.TokenizationResponse;
 import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
+import dev.ai4j.alephalpha.users.ChangeUserSettingsRequest;
+import dev.ai4j.alephalpha.users.UserSettingsResponse;
 import java.io.IOException;
 import java.net.Proxy;
 import java.time.Duration;
@@ -193,6 +195,14 @@ public class Client {
 
   public DetokenizationResponse detokenize(DetokenizationRequest request) {
     return executeRequest(api.detokenize(request));
+  }
+
+  public UserSettingsResponse userSettings() {
+    return executeRequest(api.userSettings());
+  }
+
+  public UserSettingsResponse changeUserSettings(ChangeUserSettingsRequest request) {
+    return executeRequest(api.changeUserSettings(request));
   }
 
   private <T> T executeRequest(Call<T> call) {
