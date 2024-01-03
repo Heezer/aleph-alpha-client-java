@@ -23,4 +23,12 @@ class UsersTest extends BaseTest {
 
     assertThat(response).isNotNull().extracting(UserSettingsResponse::getId).isNotNull();
   }
+
+  @Test
+  @Disabled("seems to be a problem on Aleph Alpha side - all the time status code 400 is returned")
+  void checkPrivilegesWorks() {
+    val response = client.checkPrivileges();
+
+    assertThat(response).isNotNull();
+  }
 }

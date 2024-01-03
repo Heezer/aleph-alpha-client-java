@@ -21,6 +21,7 @@ import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
 import dev.ai4j.alephalpha.users.ChangeUserSettingsRequest;
+import dev.ai4j.alephalpha.users.UserPriviledge;
 import dev.ai4j.alephalpha.users.UserSettingsResponse;
 import java.util.List;
 import retrofit2.Call;
@@ -112,4 +113,8 @@ interface Api {
   @PATCH("users/me")
   @Headers("Accept: application/json")
   Call<UserSettingsResponse> changeUserSettings(@Body ChangeUserSettingsRequest request);
+
+  @POST("check_privileges")
+  @Headers("Accept: application/json")
+  Call<List<UserPriviledge>> checkPrivileges();
 }

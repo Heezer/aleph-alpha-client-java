@@ -25,6 +25,7 @@ import dev.ai4j.alephalpha.tokens.ApiToken;
 import dev.ai4j.alephalpha.tokens.NewApiTokenRequest;
 import dev.ai4j.alephalpha.tokens.NewApiTokenResponse;
 import dev.ai4j.alephalpha.users.ChangeUserSettingsRequest;
+import dev.ai4j.alephalpha.users.UserPriviledge;
 import dev.ai4j.alephalpha.users.UserSettingsResponse;
 import java.io.IOException;
 import java.net.Proxy;
@@ -203,6 +204,10 @@ public class Client {
 
   public UserSettingsResponse changeUserSettings(ChangeUserSettingsRequest request) {
     return executeRequest(api.changeUserSettings(request));
+  }
+
+  public List<UserPriviledge> checkPrivileges() {
+    return executeRequest(api.checkPrivileges());
   }
 
   private <T> T executeRequest(Call<T> call) {
