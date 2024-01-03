@@ -1,4 +1,4 @@
-package io.github.heezer.alephalpha.users;
+package io.github.heezer.alephalpha.client.users;
 
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;

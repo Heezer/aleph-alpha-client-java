@@ -1,4 +1,4 @@
-package io.github.heezer.alephalpha.tokenize;
+package io.github.heezer.alephalpha.client.tokenization;
 
 import java.util.List;
 import lombok.Data;

@@ -1,9 +1,9 @@
-package io.github.heezer.alephalpha.evaluate;
+package io.github.heezer.alephalpha.client.evaluation;
 
 import lombok.Data;
 
 @Data
-public class EvaluateResponse {
+public class EvaluationResponse {
 
   private String modelVersion;
   private Result result;

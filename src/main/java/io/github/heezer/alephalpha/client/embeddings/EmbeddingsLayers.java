@@ -1,4 +1,4 @@
-package io.github.heezer.alephalpha.embeddings;
+package io.github.heezer.alephalpha.client.embeddings;
 
 import lombok.experimental.UtilityClass;
 

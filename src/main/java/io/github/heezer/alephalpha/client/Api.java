@@ -8,8 +8,8 @@ import io.github.heezer.alephalpha.client.embeddings.EmbeddingsRequest;
 import io.github.heezer.alephalpha.client.embeddings.EmbeddingsResponse;
 import io.github.heezer.alephalpha.client.embeddings.SemanticEmbeddingsRequest;
 import io.github.heezer.alephalpha.client.embeddings.SemanticEmbeddingsResponse;
-import io.github.heezer.alephalpha.client.evaluation.EvaluateRequest;
-import io.github.heezer.alephalpha.client.evaluation.EvaluateResponse;
+import io.github.heezer.alephalpha.client.evaluation.EvaluationRequest;
+import io.github.heezer.alephalpha.client.evaluation.EvaluationResponse;
 import io.github.heezer.alephalpha.client.explanation.ExplanationRequest;
 import io.github.heezer.alephalpha.client.explanation.ExplanationResponse;
 import io.github.heezer.alephalpha.client.models.Model;
@@ -92,7 +92,7 @@ interface Api {
 
   @POST("evaluate")
   @Headers("Accept: application/json")
-  Call<EvaluateResponse> evaluate(@Query("nice") Boolean nice, @Body EvaluateRequest request);
+  Call<EvaluationResponse> evaluate(@Query("nice") Boolean nice, @Body EvaluationRequest request);
 
   @POST("explain")
   @Headers("Accept: application/json")

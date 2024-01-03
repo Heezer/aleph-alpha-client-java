@@ -1,4 +1,4 @@
-package io.github.heezer.alephalpha.tokens;
+package io.github.heezer.alephalpha.client.tokens;
 
 import lombok.Builder;
 import lombok.Data;

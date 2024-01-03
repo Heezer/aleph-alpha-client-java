@@ -1,6 +1,6 @@
-package io.github.heezer.alephalpha.completion;
+package io.github.heezer.alephalpha.client.completion;
 
-import static io.github.heezer.alephalpha.Models.BASE_MODEL;
+import static io.github.heezer.alephalpha.client.Models.BASE_MODEL;
 
 import java.util.List;
 import lombok.Builder;

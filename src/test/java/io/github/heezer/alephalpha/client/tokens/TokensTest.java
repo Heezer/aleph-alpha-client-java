@@ -2,7 +2,7 @@ package io.github.heezer.alephalpha.client.tokens;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.github.heezer.alephalpha.BaseTest;
+import io.github.heezer.alephalpha.client.BaseTest;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.jupiter.api.Test;

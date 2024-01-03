@@ -1,33 +1,32 @@
 package io.github.heezer.alephalpha.client;
 
-import static io.github.heezer.alephalpha.ObjectOperations.getOrDefault;
-import static io.github.heezer.alephalpha.ObjectOperations.getOrDefault;
+import static io.github.heezer.alephalpha.client.ObjectOperations.getOrDefault;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
-import io.github.heezer.alephalpha.completion.CompletionRequest;
-import io.github.heezer.alephalpha.completion.CompletionResponse;
-import io.github.heezer.alephalpha.embeddings.BatchedSemanticEmbeddingsRequest;
-import io.github.heezer.alephalpha.embeddings.BatchedSemanticEmbeddingsResponse;
-import io.github.heezer.alephalpha.embeddings.EmbeddingsRequest;
-import io.github.heezer.alephalpha.embeddings.EmbeddingsResponse;
-import io.github.heezer.alephalpha.embeddings.SemanticEmbeddingsRequest;
-import io.github.heezer.alephalpha.embeddings.SemanticEmbeddingsResponse;
-import io.github.heezer.alephalpha.evaluate.EvaluateRequest;
-import io.github.heezer.alephalpha.evaluate.EvaluateResponse;
-import io.github.heezer.alephalpha.explanation.ExplanationRequest;
-import io.github.heezer.alephalpha.explanation.ExplanationResponse;
-import io.github.heezer.alephalpha.models.Model;
-import io.github.heezer.alephalpha.tokenize.DetokenizationRequest;
-import io.github.heezer.alephalpha.tokenize.DetokenizationResponse;
-import io.github.heezer.alephalpha.tokenize.TokenizationRequest;
-import io.github.heezer.alephalpha.tokenize.TokenizationResponse;
-import io.github.heezer.alephalpha.tokens.ApiToken;
-import io.github.heezer.alephalpha.tokens.NewApiTokenRequest;
-import io.github.heezer.alephalpha.tokens.NewApiTokenResponse;
-import io.github.heezer.alephalpha.users.ChangeUserSettingsRequest;
-import io.github.heezer.alephalpha.users.UserPriviledge;
-import io.github.heezer.alephalpha.users.UserSettingsResponse;
+import io.github.heezer.alephalpha.client.completion.CompletionRequest;
+import io.github.heezer.alephalpha.client.completion.CompletionResponse;
+import io.github.heezer.alephalpha.client.embeddings.BatchedSemanticEmbeddingsRequest;
+import io.github.heezer.alephalpha.client.embeddings.BatchedSemanticEmbeddingsResponse;
+import io.github.heezer.alephalpha.client.embeddings.EmbeddingsRequest;
+import io.github.heezer.alephalpha.client.embeddings.EmbeddingsResponse;
+import io.github.heezer.alephalpha.client.embeddings.SemanticEmbeddingsRequest;
+import io.github.heezer.alephalpha.client.embeddings.SemanticEmbeddingsResponse;
+import io.github.heezer.alephalpha.client.evaluation.EvaluationRequest;
+import io.github.heezer.alephalpha.client.evaluation.EvaluationResponse;
+import io.github.heezer.alephalpha.client.explanation.ExplanationRequest;
+import io.github.heezer.alephalpha.client.explanation.ExplanationResponse;
+import io.github.heezer.alephalpha.client.models.Model;
+import io.github.heezer.alephalpha.client.tokenization.DetokenizationRequest;
+import io.github.heezer.alephalpha.client.tokenization.DetokenizationResponse;
+import io.github.heezer.alephalpha.client.tokenization.TokenizationRequest;
+import io.github.heezer.alephalpha.client.tokenization.TokenizationResponse;
+import io.github.heezer.alephalpha.client.tokens.ApiToken;
+import io.github.heezer.alephalpha.client.tokens.NewApiTokenRequest;
+import io.github.heezer.alephalpha.client.tokens.NewApiTokenResponse;
+import io.github.heezer.alephalpha.client.users.ChangeUserSettingsRequest;
+import io.github.heezer.alephalpha.client.users.UserPriviledge;
+import io.github.heezer.alephalpha.client.users.UserSettingsResponse;
 import java.io.IOException;
 import java.net.Proxy;
 import java.time.Duration;
@@ -175,11 +174,11 @@ public class Client {
     return batchSemanticEmbed(null, request);
   }
 
-  public EvaluateResponse evaluate(Boolean nice, EvaluateRequest request) {
+  public EvaluationResponse evaluate(Boolean nice, EvaluationRequest request) {
     return executeRequest(api.evaluate(nice, request));
   }
 
-  public EvaluateResponse evaluate(EvaluateRequest request) {
+  public EvaluationResponse evaluate(EvaluationRequest request) {
     return evaluate(null, request);
   }
 

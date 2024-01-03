@@ -1,6 +1,6 @@
-package io.github.heezer.alephalpha.explanation;
+package io.github.heezer.alephalpha.client.explanation;
 
-import static io.github.heezer.alephalpha.Models.BASE_MODEL;
+import static io.github.heezer.alephalpha.client.Models.BASE_MODEL;
 
 import lombok.Builder;
 import lombok.Data;

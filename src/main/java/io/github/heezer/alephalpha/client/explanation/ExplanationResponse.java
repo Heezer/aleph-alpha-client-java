@@ -1,4 +1,4 @@
-package io.github.heezer.alephalpha.explanation;
+package io.github.heezer.alephalpha.client.explanation;
 
 import java.util.List;
 import lombok.Data;

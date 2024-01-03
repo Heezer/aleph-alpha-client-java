@@ -1,4 +1,4 @@
-package io.github.heezer.alephalpha.completion;
+package io.github.heezer.alephalpha.client.completion;
 
 import java.util.List;
 import lombok.Data;

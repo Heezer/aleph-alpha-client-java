@@ -2,7 +2,7 @@ package io.github.heezer.alephalpha.client.users;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.github.heezer.alephalpha.BaseTest;
+import io.github.heezer.alephalpha.client.BaseTest;
 import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

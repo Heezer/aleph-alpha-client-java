@@ -1,6 +1,6 @@
-package io.github.heezer.alephalpha.evaluate;
+package io.github.heezer.alephalpha.client.evaluation;
 
-import static io.github.heezer.alephalpha.Models.BASE_MODEL;
+import static io.github.heezer.alephalpha.client.Models.BASE_MODEL;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.NonNull;
 
 @Data
 @Builder
-public class EvaluateRequest {
+public class EvaluationRequest {
 
   @Builder.Default
   private String model = BASE_MODEL;

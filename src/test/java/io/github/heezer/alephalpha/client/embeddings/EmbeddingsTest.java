@@ -1,14 +1,14 @@
 package io.github.heezer.alephalpha.client.embeddings;
 
-import static io.github.heezer.alephalpha.embeddings.EmbeddingsLayers.INPUT_LAYER_MINUS_ONE;
-import static io.github.heezer.alephalpha.embeddings.EmbeddingsLayers.OUTPUT_LAYER_MINUS_ONE;
-import static io.github.heezer.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING_LAST_TOKEN;
-import static io.github.heezer.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING_MAX;
-import static io.github.heezer.alephalpha.embeddings.EmbeddingsPoolingOperations.POOLING_WEIGHTED_MEAN;
+import static io.github.heezer.alephalpha.client.embeddings.EmbeddingsLayers.INPUT_LAYER_MINUS_ONE;
+import static io.github.heezer.alephalpha.client.embeddings.EmbeddingsLayers.OUTPUT_LAYER_MINUS_ONE;
+import static io.github.heezer.alephalpha.client.embeddings.EmbeddingsPoolingOperations.POOLING_LAST_TOKEN;
+import static io.github.heezer.alephalpha.client.embeddings.EmbeddingsPoolingOperations.POOLING_MAX;
+import static io.github.heezer.alephalpha.client.embeddings.EmbeddingsPoolingOperations.POOLING_WEIGHTED_MEAN;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.github.heezer.alephalpha.BaseTest;
-import io.github.heezer.alephalpha.prompt.MultimodalText;
+import io.github.heezer.alephalpha.client.BaseTest;
+import io.github.heezer.alephalpha.client.prompt.MultimodalText;
 import java.util.Arrays;
 import java.util.Collections;
 import lombok.val;

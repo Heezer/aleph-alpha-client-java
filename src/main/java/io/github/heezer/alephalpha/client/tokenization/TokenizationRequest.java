@@ -1,6 +1,6 @@
-package io.github.heezer.alephalpha.tokenize;
+package io.github.heezer.alephalpha.client.tokenization;
 
-import static io.github.heezer.alephalpha.Models.BASE_MODEL;
+import static io.github.heezer.alephalpha.client.Models.BASE_MODEL;
 
 import lombok.Builder;
 import lombok.Data;

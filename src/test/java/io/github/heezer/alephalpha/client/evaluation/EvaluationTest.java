@@ -2,7 +2,7 @@ package io.github.heezer.alephalpha.client.evaluation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.github.heezer.alephalpha.BaseTest;
+import io.github.heezer.alephalpha.client.BaseTest;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ class EvaluationTest extends BaseTest {
   @Test
   void simpleEvaluateWorks() {
     val response = client.evaluate(
-      EvaluateRequest
+      EvaluationRequest
         .builder()
         .prompt("An apple a day")
         .completionExpected("keeps the doctor away, but what about a banana a day?")

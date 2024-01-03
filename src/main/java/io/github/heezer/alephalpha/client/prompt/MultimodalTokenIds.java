@@ -1,4 +1,4 @@
-package io.github.heezer.alephalpha.prompt;
+package io.github.heezer.alephalpha.client.prompt;
 
 import java.util.List;
 import lombok.Builder;

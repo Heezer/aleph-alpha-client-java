@@ -1,13 +1,13 @@
 package io.github.heezer.alephalpha.client.completion;
 
-import static io.github.heezer.alephalpha.Models.SUPREME_CONTROL_MODEL;
+import static io.github.heezer.alephalpha.client.Models.SUPREME_CONTROL_MODEL;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import io.github.heezer.alephalpha.client.BaseTest;
-import io.github.heezer.alephalpha.prompt.MultimodalImage;
-import io.github.heezer.alephalpha.prompt.MultimodalText;
-import io.github.heezer.alephalpha.prompt.MultimodalTokenIds;
+import io.github.heezer.alephalpha.client.prompt.MultimodalImage;
+import io.github.heezer.alephalpha.client.prompt.MultimodalText;
+import io.github.heezer.alephalpha.client.prompt.MultimodalTokenIds;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;

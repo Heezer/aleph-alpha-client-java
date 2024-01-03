@@ -1,6 +1,6 @@
-package io.github.heezer.alephalpha.embeddings;
+package io.github.heezer.alephalpha.client.embeddings;
 
-import static io.github.heezer.alephalpha.Models.BASE_MODEL;
+import static io.github.heezer.alephalpha.client.Models.BASE_MODEL;
 
 import java.util.List;
 import lombok.Builder;
