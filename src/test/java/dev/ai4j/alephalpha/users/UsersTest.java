@@ -7,7 +7,6 @@ import lombok.val;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("Cannot be executed automatically because of the API key")
 class UsersTest extends BaseTest {
 
   @Test

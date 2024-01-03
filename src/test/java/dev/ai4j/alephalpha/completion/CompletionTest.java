@@ -15,10 +15,8 @@ import java.util.Collections;
 import java.util.Objects;
 import lombok.SneakyThrows;
 import lombok.val;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("Cannot be executed automatically because of the API key")
 class CompletionTest extends BaseTest {
 
   @Test

@@ -5,10 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import dev.ai4j.alephalpha.BaseTest;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("Cannot be executed automatically because of the API key")
 @Slf4j
 class SpecificationTest extends BaseTest {
 

@@ -24,10 +24,6 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-    - name: Compile
-      run: mvn -B compile
-      env:
-        ALEPH_ALPHA_API_KEY: ${{ secrets.ALEPH_ALPHA_API_KEY }}
     - name: Test
       run: mvn -B verify
       env:

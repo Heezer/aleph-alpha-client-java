@@ -12,10 +12,8 @@ import dev.ai4j.alephalpha.prompt.MultimodalText;
 import java.util.Arrays;
 import java.util.Collections;
 import lombok.val;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("Cannot be executed automatically because of the API key")
 public class EmbeddingsTest extends BaseTest {
 
   @Test
