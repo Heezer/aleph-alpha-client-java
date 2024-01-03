@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dev.ai4j</groupId>
+    <groupId>io.github.heezer</groupId>
     <artifactId>aleph-alpha-client-java</artifactId>
     <version>0.1.0</version>
 
@@ -28,6 +28,7 @@
     <developers>
         <developer>
             <id>heezer</id>
+            <name>Alexey Titov</name>
             <email>alexey.heezer@gmail.com</email>
             <url>https://github.com/Heezer</url>
         </developer>
