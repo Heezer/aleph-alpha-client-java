@@ -9,6 +9,25 @@ We support the current [API version 1.14.0](https://docs.aleph-alpha.com/api/) c
 Tell us about any issue you face or new feature [here](https://github.com/Heezer/aleph-alpha-client-java/issues/new).
 
 
+# Start using
+
+Maven:
+
+```
+<dependency>
+    <groupId>io.github.heezer/groupId>
+    <artifactId>aleph-alpha-client-java</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+Gradle:
+
+```
+implementation 'io.github.heezer:aleph-alpha-client-java:0.1.0'
+```
+
+
 # Code examples
 
 ## Create an Aleph Alpha Client
