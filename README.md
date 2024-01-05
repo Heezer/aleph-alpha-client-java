@@ -1,5 +1,7 @@
 # Java client library for [Aleph Alpha](https://aleph-alpha.com/)
 
+<img src="aaclient.jpg" width="600"/>
+
 This is an unofficial Java client library that helps to connect your Java applications to [Aleph Alpha API](https://docs.aleph-alpha.com/api/).
 
 ## Current capabilities
