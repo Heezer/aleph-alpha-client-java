@@ -17,7 +17,7 @@ Maven:
 
 ```
 <dependency>
-    <groupId>io.github.heezer/groupId>
+    <groupId>io.github.heezer</groupId>
     <artifactId>aleph-alpha-client-java</artifactId>
     <version>0.1.0</version>
 </dependency>
