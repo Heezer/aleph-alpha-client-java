@@ -6,7 +6,7 @@ This is an unofficial Java client library that helps to connect your Java applic
 
 ## Current capabilities
 
-We support the [API version 1.14.0](https://docs.aleph-alpha.com/api/) completely for Java 8+.
+We support the [API version 1.14.0](https://docs.aleph-alpha.com/api/v1.14.0/) completely for Java 8+.
 
 Tell us about any issue you face or new feature [here](https://github.com/Heezer/aleph-alpha-client-java/issues/new).
 
