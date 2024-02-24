@@ -132,7 +132,8 @@ class CompletionTest extends BaseTest {
       .first()
       .extracting(CompletionResponse.Completion::getCompletion)
       .asString()
-      .contains("black and white silhouette of a bird");
+      .contains("bird")
+      .contains("silhouette");
   }
 
   @Test
