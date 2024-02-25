@@ -9,6 +9,7 @@ import lombok.NonNull;
 @Builder
 public class MultimodalTokenIds {
 
+  @Builder.Default
   private final String type = "token_ids";
 
   @NonNull

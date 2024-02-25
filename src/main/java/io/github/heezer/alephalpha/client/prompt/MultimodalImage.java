@@ -9,6 +9,7 @@ import lombok.NonNull;
 @Builder
 public class MultimodalImage {
 
+  @Builder.Default
   private final String type = "image";
 
   @NonNull

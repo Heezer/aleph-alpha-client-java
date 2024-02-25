@@ -9,6 +9,7 @@ import lombok.NonNull;
 @Builder
 public class MultimodalText {
 
+  @Builder.Default
   private final String type = "text";
 
   @NonNull
