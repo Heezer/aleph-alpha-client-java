@@ -24,10 +24,12 @@ public class CompletionRequest {
 
   private Integer minimumTokens;
   private Boolean echo;
-  private Integer temperature;
+  private Double temperature;
   private Integer topK;
   private Integer topP;
-  private Integer presencePenalty;
+  private Double presencePenalty;
+  private Double frequencyPenalty;
+  private Double sequencePenalty;
   private Integer sequencePenaltyMinLength;
   private Boolean repetitionPenaltiesIncludePrompt;
   private Boolean repetitionPenaltiesIncludeCompletion;
@@ -47,6 +49,6 @@ public class CompletionRequest {
   private Boolean disableOptimizations;
   private List<String> completionBiasInclusion;
   private Boolean completionBiasExclusionFirstTokenOnly;
-  private Integer contextualControlThreshold;
+  private Double contextualControlThreshold;
   private Boolean controlLogAdditive;
 }

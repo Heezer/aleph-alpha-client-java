@@ -11,10 +11,10 @@ public class EvaluationResponse {
   @Data
   public static class Result {
 
-    private Float logProbability;
-    private Float logPerplexity;
-    private Float logPerplexityPerToken;
-    private Float logPerplexityPerCharacter;
+    private Double logProbability;
+    private Double logPerplexity;
+    private Double logPerplexityPerToken;
+    private Double logPerplexityPerCharacter;
     private Boolean correctGreedy;
     private Integer tokenCount;
     private Integer characterCount;

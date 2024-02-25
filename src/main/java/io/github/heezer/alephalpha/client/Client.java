@@ -32,10 +32,10 @@ import java.net.Proxy;
 import java.time.Duration;
 import java.util.List;
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import okhttp3.OkHttpClient;
-import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -53,7 +53,7 @@ public class Client {
 
   @Builder
   public Client(
-    @NotNull String apiKey,
+    @NonNull String apiKey,
     Duration callTimeout,
     Duration connectTimeout,
     Duration readTimeout,

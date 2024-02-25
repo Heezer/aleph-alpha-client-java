@@ -3,7 +3,7 @@ package io.github.heezer.alephalpha.client.prompt;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 @Data
 @Builder
@@ -11,7 +11,7 @@ public class MultimodalTokenIds {
 
   private final String type = "token_ids";
 
-  @NotNull
+  @NonNull
   private List<Integer> data;
 
   private List<Control> controls;
@@ -20,10 +20,10 @@ public class MultimodalTokenIds {
   @Builder
   public static class Control {
 
-    @NotNull
+    @NonNull
     private Integer index;
 
-    @NotNull
-    private Float factor;
+    @NonNull
+    private Double factor;
   }
 }

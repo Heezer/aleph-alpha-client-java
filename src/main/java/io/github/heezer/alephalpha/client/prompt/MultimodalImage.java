@@ -3,7 +3,7 @@ package io.github.heezer.alephalpha.client.prompt;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 @Data
 @Builder
@@ -11,7 +11,7 @@ public class MultimodalImage {
 
   private final String type = "image";
 
-  @NotNull
+  @NonNull
   private String data;
 
   private Integer x;
@@ -24,10 +24,10 @@ public class MultimodalImage {
   @Builder
   public static class Control {
 
-    @NotNull
+    @NonNull
     private Rect rect;
 
-    @NotNull
+    @NonNull
     private Float factor;
 
     private String tokenOverlap;
@@ -37,16 +37,16 @@ public class MultimodalImage {
   @Builder
   public static class Rect {
 
-    @NotNull
+    @NonNull
     private Float left;
 
-    @NotNull
+    @NonNull
     private Float top;
 
-    @NotNull
+    @NonNull
     private Float width;
 
-    @NotNull
+    @NonNull
     private Float height;
   }
 }

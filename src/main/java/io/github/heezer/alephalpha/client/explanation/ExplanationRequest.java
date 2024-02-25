@@ -21,8 +21,8 @@ public class ExplanationRequest {
   @NonNull
   private String target;
 
-  private Float controlFactor;
-  private Float contextualControlThreshold;
+  private Double controlFactor;
+  private Double contextualControlThreshold;
   private Boolean controlLogAdditive;
   private String postprocessing;
   private String normalize;

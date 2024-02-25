@@ -2,12 +2,12 @@ package io.github.heezer.alephalpha.client.users;
 
 import lombok.Builder;
 import lombok.Data;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 @Data
 @Builder
 public class ChangeUserSettingsRequest {
 
-  @NotNull
+  @NonNull
   private Integer outOfCreditsThreshold;
 }

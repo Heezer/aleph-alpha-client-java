@@ -1,29 +1,29 @@
 package io.github.heezer.alephalpha.client.users;
 
 import lombok.Data;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 @Data
 public class UserSettingsResponse {
 
-  @NotNull
+  @NonNull
   private Integer id;
 
-  @NotNull
+  @NonNull
   private String email;
 
-  @NotNull
+  @NonNull
   private String role;
 
-  @NotNull
+  @NonNull
   private Float creditsRemaining;
 
-  @NotNull
+  @NonNull
   private Boolean invoiceAllowed;
 
-  @NotNull
+  @NonNull
   private Float outOfCreditsThreshold;
 
-  @NotNull
+  @NonNull
   private String termsOfServiceVersion;
 }

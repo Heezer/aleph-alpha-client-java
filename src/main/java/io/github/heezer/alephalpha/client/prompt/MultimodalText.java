@@ -3,7 +3,7 @@ package io.github.heezer.alephalpha.client.prompt;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 @Data
 @Builder
@@ -11,7 +11,7 @@ public class MultimodalText {
 
   private final String type = "text";
 
-  @NotNull
+  @NonNull
   private String data;
 
   private List<Control> controls;
@@ -20,14 +20,14 @@ public class MultimodalText {
   @Builder
   public static class Control {
 
-    @NotNull
+    @NonNull
     private Integer start;
 
-    @NotNull
+    @NonNull
     private Integer length;
 
-    @NotNull
-    private Float factor;
+    @NonNull
+    private Double factor;
 
     private String tokenOverlap;
   }

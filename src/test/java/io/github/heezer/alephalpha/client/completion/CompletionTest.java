@@ -21,7 +21,7 @@ class CompletionTest extends BaseTest {
 
   @Test
   void simplePromptWorks() {
-    val response = client.complete(CompletionRequest.builder().prompt("An apple a day").build());
+    val response = client.complete(CompletionRequest.builder().prompt("An apple a day").temperature(0.5d).build());
 
     assertThat(response).isNotNull().extracting(CompletionResponse::getCompletions).isNotNull();
     assertThat(response.getCompletions())
@@ -86,7 +86,7 @@ class CompletionTest extends BaseTest {
               .data("an apple")
               .controls(
                 Collections.singletonList(
-                  MultimodalText.Control.builder().start(3).length(5).factor(0.1f).tokenOverlap("complete").build()
+                  MultimodalText.Control.builder().start(3).length(5).factor(0.1).tokenOverlap("complete").build()
                 )
               )
               .build()

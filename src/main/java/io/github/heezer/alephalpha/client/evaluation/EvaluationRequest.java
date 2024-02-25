@@ -21,6 +21,6 @@ public class EvaluationRequest {
   @NonNull
   private String completionExpected;
 
-  private Integer contextualControlThreshold;
+  private Double contextualControlThreshold;
   private Boolean controlLogAdditive;
 }
