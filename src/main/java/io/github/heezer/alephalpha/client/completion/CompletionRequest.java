@@ -48,6 +48,8 @@ public class CompletionRequest {
   private Boolean rawCompletion;
   private Boolean disableOptimizations;
   private List<String> completionBiasInclusion;
+  private Boolean completionBiasInclusionFirstTokenOnly;
+  private List<String> completionBiasExclusion;
   private Boolean completionBiasExclusionFirstTokenOnly;
   private Double contextualControlThreshold;
   private Boolean controlLogAdditive;
