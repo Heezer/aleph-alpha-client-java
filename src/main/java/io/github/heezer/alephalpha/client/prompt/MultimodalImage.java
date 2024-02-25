@@ -29,7 +29,7 @@ public class MultimodalImage {
     private Rect rect;
 
     @NonNull
-    private Float factor;
+    private Double factor;
 
     private String tokenOverlap;
   }
@@ -39,15 +39,15 @@ public class MultimodalImage {
   public static class Rect {
 
     @NonNull
-    private Float left;
+    private Double left;
 
     @NonNull
-    private Float top;
+    private Double top;
 
     @NonNull
-    private Float width;
+    private Double width;
 
     @NonNull
-    private Float height;
+    private Double height;
   }
 }

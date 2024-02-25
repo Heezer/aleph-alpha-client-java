@@ -16,13 +16,13 @@ public class UserSettingsResponse {
   private String role;
 
   @NonNull
-  private Float creditsRemaining;
+  private Double creditsRemaining;
 
   @NonNull
   private Boolean invoiceAllowed;
 
   @NonNull
-  private Float outOfCreditsThreshold;
+  private Double outOfCreditsThreshold;
 
   @NonNull
   private String termsOfServiceVersion;
