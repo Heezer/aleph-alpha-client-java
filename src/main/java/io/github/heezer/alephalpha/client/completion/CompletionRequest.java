@@ -26,7 +26,7 @@ public class CompletionRequest {
   private Boolean echo;
   private Double temperature;
   private Integer topK;
-  private Integer topP;
+  private Double topP;
   private Double presencePenalty;
   private Double frequencyPenalty;
   private Double sequencePenalty;
