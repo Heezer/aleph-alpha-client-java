@@ -19,7 +19,7 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
       - name: Publish package
-        run: mvn -B clean deploy -Psign -DskipTests --batch-mode
+        run: mvn -B clean deploy -Psign -DskipTests
         env:
           ALEPH_ALPHA_API_KEY: ${{ secrets.ALEPH_ALPHA_API_KEY }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
