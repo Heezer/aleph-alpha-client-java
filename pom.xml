@@ -4,7 +4,7 @@
 
     <groupId>io.github.heezer</groupId>
     <artifactId>aleph-alpha-client-java</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.1.2-SNAPSHOT</version>
 
     <name>Java Client for Aleph Alpha</name>
     <description>Java Client for Aleph Alpha</description>
@@ -39,8 +39,13 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <retrofit.version>2.9.0</retrofit.version>
-        <okhttp.version>4.12.0</okhttp.version>
-        <junit.version>5.10.1</junit.version>
+        <okhttp.version>5.0.0-alpha.12</okhttp.version>
+        <gson.version>2.10.1</gson.version>
+        <slf4j.version>2.0.12</slf4j.version>
+        <lombok.version>1.18.30</lombok.version>
+        <junit.version>5.10.2</junit.version>
+        <assertj.version>3.25.3</assertj.version>
+        <tinylog.version>2.7.0</tinylog.version>
     </properties>
 
     <dependencies>
@@ -49,6 +54,13 @@
             <groupId>com.squareup.retrofit2</groupId>
             <artifactId>retrofit</artifactId>
             <version>${retrofit.version}</version>
+            <exclusions>
+                <!-- Due to CVE-2023-0833 vulnerability -->
+                <exclusion>
+                    <groupId>com.squareup.okhttp3</groupId>
+                    <artifactId>okhttp</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -71,7 +83,7 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.10.1</version>
+            <version>${gson.version}</version>
         </dependency>
 
         <dependency>
@@ -89,13 +101,13 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.9</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>${lombok.version}</version>
         </dependency>
 
         <!-- TEST -->
@@ -117,20 +129,20 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.24.2</version>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.tinylog</groupId>
             <artifactId>slf4j-tinylog</artifactId>
-            <version>2.6.2</version>
+            <version>${tinylog.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.tinylog</groupId>
             <artifactId>tinylog-impl</artifactId>
-            <version>2.6.2</version>
+            <version>${tinylog.version}</version>
             <scope>test</scope>
         </dependency>
 

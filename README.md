@@ -1,6 +1,6 @@
 # Java client library for [Aleph Alpha](https://aleph-alpha.com/)
 
-<img src="aaclient.jpg" width="600"/>
+<img src="aaclient.jpg" width="600" alt="Aleph Alpha Java Client Image"/>
 
 This is an unofficial Java client library that helps to connect your Java applications to [Aleph Alpha API](https://docs.aleph-alpha.com/api/).
 
@@ -22,14 +22,14 @@ Maven:
 <dependency>
     <groupId>io.github.heezer</groupId>
     <artifactId>aleph-alpha-client-java</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 </dependency>
 ```
 
 Gradle:
 
 ```
-implementation 'io.github.heezer:aleph-alpha-client-java:0.1.1'
+implementation 'io.github.heezer:aleph-alpha-client-java:0.1.2'
 ```
 
 
